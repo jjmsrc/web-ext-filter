@@ -46,7 +46,7 @@ public class FileExtensionController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteFileExtension(@PathVariable Integer id) {
 		fileExtensionService.deleteFileExtension(id);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.noContent().build();
 	}
 
 }
