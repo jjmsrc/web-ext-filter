@@ -32,7 +32,7 @@ async function request(url, {
     return res.json();
 }
 
-const fileExtensionApi = {
+export const fileExtensionApi = {
     getAll() {
         return request(API.EXTS);
     },
