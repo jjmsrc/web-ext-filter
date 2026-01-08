@@ -16,17 +16,25 @@
   ``` 
     - URL: /exts
     - METHOD: GET
-    - RESPONSE BODY: { 
+    - RESPONSE BODY: [ 
         { id: 식별 아이디, name: 확장자 명, fixed: 고정 확장자 여부, checked: 체크 여부 }, 
         ...
-      }
+      ]
   ```
 
-- 확장자 등록(체크)
+- 고정 확장자 체크
+  ```
+    - URL: /exts/{id}
+    - METHOD: Patch
+    - RESPONSE BODY: 
+        { id: 식별 아이디, name: 확장자 명, fixed: 고정 확장자 여부, checked: 체크 여부 }
+  ```
+  
+- 커스텀 확장자 등록
   ```
     - URL: /exts
     - METHOD: POST
-    - REQUEST BODY: { name: {확장자 명} }
+    - REQUEST BODY: { name: 확장자 명 }
     - RESPONSE BODY: 
         { id: 식별 아이디, name: 확장자 명, fixed: 고정 확장자 여부, checked: 체크 여부 }
   ```
