@@ -49,10 +49,11 @@ public class FileExtensionService {
 		return FileExtensionDto.from(ext);
 	}
 
+	@Transactional
 	public FileExtensionDto makeFileExtension(FileExtensionRequestDto dto) {
 
 		long count = fileExtensionRepository.count();
-		System.out.println(count + " - 개수");
+
 		if (count >= MAX_CUSTOM_EXTENSIONS) throw new CustomException(ErrorCode.NO_MORE_CUSTOM_EXTENSION);
 
 		Optional<FileExtension> opt = fileExtensionRepository.findByName(dto.name());
