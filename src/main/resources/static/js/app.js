@@ -5,47 +5,30 @@ const customExtMax = 200;
 let customExtCnt = 0;
 
 const fetchData = () => {
-
     return fileExtensionApi.getAll();
-
 }
 
 const onCheck = (id) => {
-    console.log("onCheck: " + id);
-
-    return fileExtensionApi.check(id).catch(e => {
-        window.alert(e.message);
-        console.error(e);
-    });
-
+    return fileExtensionApi.check(id);
 }
 
 const onCreate  = (name) => {
-    console.log("onCreate: " + name);
-
     if (name.length > 20) {
         window.alert("길이는 20 이하여야 합니다.");
         return;
     }
 
-    return fileExtensionApi.create(name).catch(e => {
-        window.alert(e.message);
-        console.error(e);
-    });
+    return fileExtensionApi.create(name);
 }
 
 const onRemove = (id) => {
-
-    console.log("uncheck: " + id);
-
-    return fileExtensionApi.remove(id).catch(e => {
-        window.alert(e.message);
-        console.error(e);
-    });
-
+    return fileExtensionApi.remove(id);
 }
 
-
+const handleError = (err) => {
+    window.alert(err.message);
+    console.log(err);
+}
 
 const init = () => {
 
@@ -74,8 +57,7 @@ const init = () => {
             onCheck(ext.id).then((ext = {id: 0, name: "", fixed: 0, checked: 0}) => {
                 if (!ext.id) window.alert("유효하지 않은 요청입니다.");
                 e.target.checked = ext.checked;
-                console.log(ext);
-            });
+            }).catch(handleError);
         });
 
         const label = document.createElement("label");
@@ -101,10 +83,10 @@ const init = () => {
         btn.type = "button";
         btn.textContent = "x";
         btn.addEventListener("click", (e) => {
-            onRemove(ext.id).then((ext) => {
+            onRemove(ext.id).then(() => {
                 updateCustomCnt(--customExtCnt);
                 wrapper.remove();
-            });
+            }).catch(handleError);
         });
 
         wrapper.appendChild(btn);
@@ -122,7 +104,7 @@ const init = () => {
             }
         });
         updateCustomCnt(customExtCnt = cntCustom);
-    });
+    }).catch(handleError);
 
     const inputExt = document.getElementById("inp-ext");
     const addBtn = document.getElementById("btn-add-ext");
@@ -150,7 +132,7 @@ const init = () => {
         extPromise.then((ext) => {
             addCustomExt(ext);
             updateCustomCnt(++customExtCnt);
-        })
+        }).catch(handleError);
 
     });
 
