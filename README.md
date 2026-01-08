@@ -12,10 +12,35 @@
 
 ### API
 
+- 모든 확장자 조회
+  ``` 
+    - URL: /exts
+    - METHOD: GET
+    - RESPONSE BODY: { 
+        { id: 식별 아이디, name: 확장자 명, fixed: 고정 확장자 여부, checked: 체크 여부 }, 
+        ...
+      }
+  ```
+
+- 확장자 등록(체크)
+  ```
+    - URL: /exts
+    - METHOD: POST
+    - REQUEST BODY: { name: {확장자 명} }
+    - RESPONSE BODY: 
+        { id: 식별 아이디, name: 확장자 명, fixed: 고정 확장자 여부, checked: 체크 여부 }
+  ```
+  
+- 확장자 삭제(체크 해제)
+  ``` 
+    - URL: /exts/{id}
+    - METHOD: DELETE
+  ```
+
 ### TODO
 
 - [x] 설정 화면 구현
-- [ ] 확장자 등록, 해제 API 구현
+- [ ] 확장자 등록, 삭제 API 구현
 - [ ] API 연동
 - [ ] 기능 테스트 및 배포
 

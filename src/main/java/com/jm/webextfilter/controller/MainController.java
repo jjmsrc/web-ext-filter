@@ -1,15 +1,13 @@
-package com.jm.webextfilter;
+package com.jm.webextfilter.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class WebExtFilterController {
-
+public class MainController {
 	@GetMapping("/")
-	public String index(Model model) {
+	public String index() {
 		return "index";
 	}
-
 }
