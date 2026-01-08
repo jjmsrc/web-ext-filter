@@ -13,11 +13,10 @@ const fetchData = () => {
 const onCheck = (id) => {
     console.log("onCheck: " + id);
 
-    try {
-        return fileExtensionApi.check(id);
-    } catch (e) {
+    return fileExtensionApi.check(id).catch(e => {
+        window.alert(e.message);
         console.error(e);
-    }
+    });
 
 }
 
@@ -29,22 +28,20 @@ const onCreate  = (name) => {
         return;
     }
 
-    try {
-        return fileExtensionApi.create(name);
-    } catch (e) {
+    return fileExtensionApi.create(name).catch(e => {
+        window.alert(e.message);
         console.error(e);
-    }
+    });
 }
 
 const onRemove = (id) => {
 
     console.log("uncheck: " + id);
 
-    try {
-        return fileExtensionApi.remove(id);
-    } catch (e) {
+    return fileExtensionApi.remove(id).catch(e => {
+        window.alert(e.message);
         console.error(e);
-    }
+    });
 
 }
 
