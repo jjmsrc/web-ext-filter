@@ -73,5 +73,14 @@ public class FileExtensionService {
 		return FileExtensionDto.from(ext);
 	}
 
+	@Transactional
+	public void deleteFileExtension(Integer id) {
+		// 요청한 확장자가 없을 경우, 에러 반환
+		FileExtension ext = fileExtensionRepository.findById(id).orElseThrow(() -> new CustomException(ErrorCode.EXTENSION_NOT_FOUND));
+		
+		// 요청한 확장자가 고정 확장자일 경우, 에러 반환
+		if (ext.getFixed()) throw new CustomException(ErrorCode.INVALID_REQUEST);
 
+		fileExtensionRepository.delete(ext);
+	}
 }
