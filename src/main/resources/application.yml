@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: web-ext-filter
+
+  config:
+    import: application-local.yml
