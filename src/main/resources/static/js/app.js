@@ -47,6 +47,31 @@ const init = () => {
         customCount.textContent = `${c}/${cntMax}`;
     }
 
+    // 1초에 5번 이상 체크를 누를 경우 경고 화면 팝업
+    const MAX_CLICKS = 5;
+    const MAX_TIME = 1000;
+    let clickCount = 0;
+    let timer = null;
+    const handleMaxClick = () => {
+        clickCount++;
+
+        if (!timer) {
+            timer = setTimeout(() => {
+                clickCount = 0;
+                timer = null;
+            }, MAX_TIME);
+        }
+
+        if (clickCount >= MAX_CLICKS) {
+            clickCount = 0;
+            clearTimeout(timer);
+            timer = null;
+            return false;
+        }
+
+        return true;
+    }
+
     const addFixedExt = (ext) => {
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
@@ -54,6 +79,10 @@ const init = () => {
         checkbox.name = ext.name;
         checkbox.checked = ext.checked;
         checkbox.addEventListener("change", (e) => {
+            if (!handleMaxClick()) {
+                alert("너무 빠르게 클릭했습니다.");
+                return;
+            }
             onCheck(ext.id).then((ext = {id: 0, name: "", fixed: 0, checked: 0}) => {
                 if (!ext.id) window.alert("유효하지 않은 요청입니다.");
                 e.target.checked = ext.checked;
