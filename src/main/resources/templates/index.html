@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+플로우 개발 과제
+<hr>
+<h1>파일 확장자 차단</h1>
+<hr>
+<h3>파일 확장자에 따라 특정 형식의 파일을 첨부하거나 전송하지 못하도록 제한</h3>
+<table id="ext-table">
+    <tr>
+        <td>고정 확장자</td>
+        <td id="fixed-ext">
+        </td>
+    </tr>
+    <tr>
+        <td><p>커스텀 확장자</p></td>
+        <td>
+            <div class="input-row-custom">
+                <label for="inp-ext">
+                    <input type="text" id="inp-ext" placeholder="확장자 입력" maxlength="20">
+                </label>
+                <button type="button" id="btn-add-ext">+추가</button>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <div class="custom-ext-container">
+                <div class="count">
+                    <span id="custom-count"></span>
+                </div>
+
+                <div class="custom-ext-list" id="custom-ext">
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<script src="/js/app.js" type="module"></script>
+
+</body>
+<style>
+    .custom-ext-container {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        height: 150px;
+        padding: 8px;
+        overflow-y: auto;
+    }
+
+    .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 8px;
+        border: 1px solid #aaa;
+        border-radius: 12px;
+        margin: 4px;
+        background: #f5f5f5;
+    }
+
+    .chip-remove {
+        border: none;
+        background: none;
+        padding: 0;
+        margin-left: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .checkbox-item {
+        margin: 4px;
+    }
+
+</style>
+</html>
